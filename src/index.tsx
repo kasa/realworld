@@ -1,7 +1,10 @@
 /* @refresh reload */
+import { hashIntegration, Router } from "@solidjs/router";
 import { render } from "solid-js/web";
 
 import App from "./App";
-import "./index.css";
 
-render(() => <App />, document.getElementById("root") as HTMLElement);
+render(() =>
+	<Router source={hashIntegration()}>
+		<App />
+	</Router>, document.body as HTMLElement);

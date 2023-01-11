@@ -1,26 +1,43 @@
+import { Route, Routes } from "@solidjs/router";
 import type { Component } from "solid-js";
+import { createStore } from "solid-js/store";
+import { User } from "./api-client";
+import { AuthProvider, AuthState, CascadingAuthenticationState } from "./auth/auth";
+import { Footer } from "./components/Footer";
+import { NavBar } from "./components/NavBar";
+import Home from "./pages/home";
 
-import styles from "./App.module.css";
-import logo from "./logo.svg";
+type UserStore = { user: User | null | undefined };
 
 const App: Component = () => {
+	const [userStore] = createStore<UserStore>({ user: undefined });
+
+	const provider: AuthProvider = {
+		getAuthState: (): AuthState => {
+			return {
+				getUser: (): User | null | undefined => {
+					return userStore.user;
+				}
+			};
+		},
+	};
+
 	return (
-		<div class={styles.App}>
-			<header class={styles.header}>
-				<img src={logo} class={styles.logo} alt="logo" />
-				<p>
-					Edit <code>src/App.tsx</code> and save to reload.
-				</p>
-				<a
-					class={styles.link}
-					href="https://github.com/solidjs/solid"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn Solid
-				</a>
-			</header>
-		</div>
+		<CascadingAuthenticationState provider={provider}>
+			<NavBar />
+			<Routes>
+				<Route path={["/", "/global", "/feed"]} component={Home} />
+				{/* <Route path={"/login"} component={Login} />
+				<Route path={"/register"} component={Register} />
+				<Route path="/settings" component={Settings} />
+				<Route path="/editor" component={Editor} />
+				<Route path="/article/:slug" component={Article} />
+				<Route path="/profile:/username" component={Profile}>
+					<Route path="/favorites" component={Profile} />
+				</Route> */}
+			</Routes>
+			<Footer />
+		</CascadingAuthenticationState>
 	);
 };
 
