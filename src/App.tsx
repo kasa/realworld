@@ -1,12 +1,13 @@
 import { Route, Routes } from "@solidjs/router";
-import { Component, createContext, useContext } from "solid-js";
+import { Component, createContext, lazy, useContext } from "solid-js";
 import { createStore, SetStoreFunction } from "solid-js/store";
 import { ArticlesApi, Configuration, TagsApi, User, UserAndAuthenticationApi } from "./api-client";
 import { AuthProvider, AuthState, CascadingAuthenticationState } from "./auth/auth";
 import { Footer } from "./components/Footer";
-import Login from "./components/Login";
 import { NavBar } from "./components/NavBar";
-import Home from "./pages/home";
+
+const Login = lazy(() => import("./components/Login"));
+const Home = lazy(() => import("./pages/home"));
 
 type UserStore = { user: User | null | undefined };
 
@@ -57,8 +58,8 @@ const App: Component = () => {
 			<CascadingAuthenticationState provider={provider}>
 				<NavBar />
 				<Routes>
-					<Route path={"/"} component={Home} />
-					<Route path={"/login"} component={Login} />
+					<Route path="/" component={Home} />
+					<Route path="/login" component={Login} />
 					{/* <Route path={"/register"} component={Register} />
 				<Route path="/settings" component={Settings} />
 				<Route path="/editor" component={Editor} />
