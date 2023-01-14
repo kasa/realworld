@@ -1,5 +1,5 @@
 import { A, useSearchParams } from "@solidjs/router";
-import { createEffect, createResource, createSignal, ErrorBoundary } from "solid-js";
+import { createEffect, createMemo, createResource, createSignal, ErrorBoundary } from "solid-js";
 import { ArticlesApi, TagsApi } from "../../api-client";
 import { apiConfig } from "../../App";
 import { AuthorizeView } from "../../auth/component";
@@ -12,6 +12,7 @@ type ArticleParams = {
 };
 
 export default function Home() {
+	console.debug("init");
 	const tagsApi = new TagsApi(apiConfig);
 	const [tags] = createResource(
 		"tags",
@@ -19,15 +20,8 @@ export default function Home() {
 		{ initialValue: [] }
 	);
 
-	const [articleParams, setArticleParams] = createSignal<ArticleParams>({ source: "", page: 1, });
-
-	const [params] = useSearchParams();
-	createEffect(() => {
-		const tab = params.tab || "";
-		const pg = Number(params.page) || 1;
-		console.log(tab, pg);
-		setArticleParams({ source: tab, page: pg });
-	});
+	const tagMemo = createMemo(() => tags());
+	const [articleParams, setArticleParams] = createSignal<ArticleParams>();
 
 	const articleApi = new ArticlesApi(apiConfig);
 	const [articles] = createResource(
@@ -45,6 +39,16 @@ export default function Home() {
 			}
 		},
 	);
+
+	const [params] = useSearchParams();
+	createEffect(() => {
+		console.debug("effect", JSON.stringify(params));
+		setArticleParams({ source: params.tab || "", page: Number(params.page) || 1 });
+	});
+
+	const articleMemo = createMemo(() => {
+		return articles();
+	});
 
 	return (
 		<div class="home-page">
@@ -71,12 +75,12 @@ export default function Home() {
 							</ul>
 						</div>
 						<ErrorBoundary fallback={err => err}>
-							<ArticleList data={articles()} />
+							<ArticleList data={articleMemo()} />
 						</ErrorBoundary>
 					</div>
 					<div class="col-md-3">
 						<div class="sidebar">
-							<PopularTags data={tags()} fallback={<div>Loading...</div>} />
+							<PopularTags data={tagMemo()} fallback={<div>Loading...</div>} />
 						</div>
 					</div>
 				</div>
