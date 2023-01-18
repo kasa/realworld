@@ -1,7 +1,7 @@
 import { For, Show } from "solid-js";
 
 type ListErrorsProps = {
-	errors: any
+	errors: Record<string, string>
 }
 
 export function ListErrors(props: ListErrorsProps) {
