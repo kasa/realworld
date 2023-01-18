@@ -1,10 +1,14 @@
 import { For, Show } from "solid-js";
 
-export function ListErrors(props: any) {
+type ListErrorsProps = {
+	errors: any
+}
+
+export function ListErrors(props: ListErrorsProps) {
 	return (
 		<Show when={props.errors}>
 			<ul class="error-messages">
-				<p>{props}</p>
+				{/* <p>{props}</p> */}
 				<For each={Object.keys(props.errors)}>
 					{key => (
 						<li>{key} {props.errors[key]}</li>
@@ -12,5 +16,5 @@ export function ListErrors(props: any) {
 				</For>
 			</ul>
 		</Show>
-	)
-};
+	);
+}

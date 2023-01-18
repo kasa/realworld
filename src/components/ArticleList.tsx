@@ -1,6 +1,6 @@
 import { For } from "solid-js";
 import { GetArticlesFeed200Response } from "../api-client";
-import { ArticlePreview } from "./Article";
+import ArticlePreview from "./Article";
 
 interface ArticlesProp {
 	data: GetArticlesFeed200Response

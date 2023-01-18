@@ -42,12 +42,12 @@ export default function Login() {
 							<fieldset class="form-group">
 								<input class="form-control form-control-lg" type="text" placeholder="Email"
 									value={state.email}
-									onchange={e => setState({ email: e.currentTarget.value })} />
+									onChange={e => setState({ email: e.currentTarget.value })} />
 							</fieldset>
 							<fieldset class="form-group">
 								<input class="form-control form-control-lg" type="password" placeholder="Password"
 									value={state.password}
-									onchange={e => setState({ password: e.currentTarget.value })} />
+									onChange={e => setState({ password: e.currentTarget.value })} />
 
 							</fieldset>
 							<button class="btn btn-lg btn-primary pull-xs-right" type="submit">Sign in</button>

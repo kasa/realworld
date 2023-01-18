@@ -15,12 +15,12 @@ export function NavBar() {
 						<Authorized>
 							<li class="nav-item">
 								<A class="nav-link" activeClass="active" href="/editor">
-									<i class="ion-compose"></i>&nbsp;New Article
+									<i class="ion-compose" />&nbsp;New Article
 								</A>
 							</li>
 							<li class="nav-item">
 								<A class="nav-link" activeClass="active" href="/settings">
-									<i class="ion-gear-a"></i>&nbsp;Settings
+									<i class="ion-gear-a" />&nbsp;Settings
 								</A>
 							</li>
 						</Authorized>

@@ -12,7 +12,7 @@ export function PopularTags(props: PopularTags) {
 			<div class="tag-list">
 				<For each={props.data} fallback={props.fallback}>
 					{(tag) =>
-						<a href="" class="tag-pill tag-default">{tag}</a>
+						<div class="tag-pill tag-default">{tag}</div>
 					}
 				</For>
 			</div>
