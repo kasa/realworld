@@ -42,7 +42,7 @@ export function AuthorizeView(props: AuthorizeViewProps): Accessor<JSXElement> {
 		throw new Error("No CascadingAuthenticationState");
 	}
 
-	return createMemo(() => {
+	const memo = createMemo(() => {
 		const c = children(() => props.children);
 		const isAuthorized = () => authState.getUser();
 
@@ -67,4 +67,6 @@ export function AuthorizeView(props: AuthorizeViewProps): Accessor<JSXElement> {
 
 		return null;
 	});
+
+	return memo;
 }
