@@ -3,25 +3,20 @@ import { ResponseError } from "../../api-client";
 import { apiClient, useAppContext } from "../../App";
 import ListErrors from "../../components/ListErrors";
 
-export type UserStore = {
-	email: string;
-	password: string;
-	errors: Record<string, string>,
-}
-
-export default function Login() {
+export default function Register() {
 	const appCtx = useAppContext();
 	if (appCtx === undefined) {
 		throw new Error("No appCtx");
 	}
-	const [state, setState] = createStore<UserStore>({ email: "", password: "", errors: {} });
+
+	const [state, setState] = createStore({ username: "", email: "", password: "", errors: {} });
 
 	const handleSubmit = (e: Event) => {
 		e.preventDefault();
 
-		appCtx.setUser({ user: undefined });
-		apiClient.user.login({
-			body: { user: { email: state.email, password: state.password } }
+
+		apiClient.user.createUser({
+			body: { user: { username: state.username, email: state.email, password: state.password } }
 		}).then((res) => {
 			appCtx.setUser({ user: res.user });
 			location.hash = "/?tab=user";
@@ -36,12 +31,17 @@ export default function Login() {
 			<div class="container page">
 				<div class="row">
 					<div class="col-md-6 offset-md-3 col-xs-12">
-						<h1 class="text-xs-center">Sign in</h1>
+						<h1 class="text-xs-center">Sign up</h1>
 						<p class="text-xs-center">
-							<a href="/#/register">Don't have an account?</a>
+							<a href="/#/login">Have an account?</a>
 						</p>
 						<ListErrors errors={state.errors} />
 						<form onSubmit={handleSubmit}>
+							<fieldset class="form-group">
+								<input class="form-control form-control-lg" type="text" placeholder="Your Name"
+									value={state.username}
+									onChange={e => setState({ username: e.currentTarget.value })} />
+							</fieldset>
 							<fieldset class="form-group">
 								<input class="form-control form-control-lg" type="text" placeholder="Email"
 									value={state.email}
@@ -51,13 +51,12 @@ export default function Login() {
 								<input class="form-control form-control-lg" type="password" placeholder="Password"
 									value={state.password}
 									onChange={e => setState({ password: e.currentTarget.value })} />
-
 							</fieldset>
-							<button class="btn btn-lg btn-primary pull-xs-right" type="submit">Sign in</button>
+							<button class="btn btn-lg btn-primary pull-xs-right">Sign up</button>
 						</form>
 					</div>
 				</div>
 			</div>
-		</div >
+		</div>
 	);
 }

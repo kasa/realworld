@@ -8,6 +8,8 @@ import NavBar from "./components/NavBar";
 
 const Login = lazy(() => import("./pages/login"));
 const Home = lazy(() => import("./pages/home"));
+const Settings = lazy(() => import("./pages/settings"));
+const Register = lazy(() => import("./pages/register"));
 
 type UserStore = { user: User | null | undefined };
 
@@ -60,8 +62,8 @@ const App: Component = () => {
 				<Routes>
 					<Route path="/" component={Home} />
 					<Route path="/login" component={Login} />
-					{/* <Route path={"/register"} component={Register} /> */}
-					{/* <Route path="/settings" component={Settings} /> */}
+					<Route path={"/register"} component={Register} />
+					<Route path="/settings" component={Settings} />
 					{/* <Route path="/editor" component={Editor} /> */}
 					{/* <Route path="/article/:slug" component={Article} /> */}
 					{/* <Route path="/profile:/username" component={Profile}>
