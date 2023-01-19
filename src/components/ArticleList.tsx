@@ -6,7 +6,7 @@ interface ArticlesProp {
 	data: GetArticlesFeed200Response
 }
 
-export function ArticleList(props: ArticlesProp) {
+export default function ArticleList(props: ArticlesProp) {
 	return (
 		<For each={props.data?.articles} fallback={<div class="article-preview">Loading articles...</div>}>
 			{(article) =>

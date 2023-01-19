@@ -5,7 +5,7 @@ type PopularTags = {
 	fallback?: JSXElement;
 };
 
-export function PopularTags(props: PopularTags) {
+export default function PopularTags(props: PopularTags) {
 	return (
 		<>
 			<p>Popular Tags</p>

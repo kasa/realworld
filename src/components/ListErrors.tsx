@@ -4,7 +4,7 @@ type ListErrorsProps = {
 	errors: Record<string, string>
 }
 
-export function ListErrors(props: ListErrorsProps) {
+export default function ListErrors(props: ListErrorsProps) {
 	return (
 		<Show when={props.errors}>
 			<ul class="error-messages">

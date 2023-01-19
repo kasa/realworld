@@ -3,8 +3,8 @@ import { createEffect, createMemo, createResource, createSignal, ErrorBoundary }
 import { ArticlesApi, TagsApi } from "../../api-client";
 import { apiConfig } from "../../App";
 import { AuthorizeView } from "../../auth/component";
-import { ArticleList } from "../../components/ArticleList";
-import { PopularTags } from "../../components/PopularTags";
+import ArticleList from "../../components/ArticleList";
+import PopularTags from "../../components/PopularTags";
 
 type ArticleParams = {
 	source: string;

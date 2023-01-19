@@ -1,7 +1,7 @@
 import { A } from "@solidjs/router";
 import { Authorized, AuthorizeView, NotAuthorized } from "../auth/component";
 
-export function NavBar() {
+export default function NavBar() {
 	return (
 		<nav class="navbar navbar-light">
 			<div class="container">
