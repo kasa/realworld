@@ -1,7 +1,7 @@
 import { createStore } from "solid-js/store";
-import { ResponseError } from "../api-client";
-import { apiClient, useAppContext } from "../App";
-import ListErrors from "../components/ListErrors";
+import { ResponseError } from "../../api-client";
+import { apiClient, useAppContext } from "../../App";
+import ListErrors from "../../components/ListErrors";
 
 type UserStore = {
 	email: string;
