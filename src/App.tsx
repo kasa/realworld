@@ -3,8 +3,8 @@ import { Component, createContext, lazy, useContext } from "solid-js";
 import { createStore, SetStoreFunction } from "solid-js/store";
 import { ArticlesApi, Configuration, TagsApi, User, UserAndAuthenticationApi } from "./api-client";
 import { AuthProvider, AuthState, CascadingAuthenticationState } from "./auth/auth";
-import { Footer } from "./components/Footer";
-import { NavBar } from "./components/NavBar";
+import Footer from "./components/Footer";
+import NavBar from "./components/NavBar";
 
 const Login = lazy(() => import("./components/Login"));
 const Home = lazy(() => import("./pages/home"));
