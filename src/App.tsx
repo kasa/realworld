@@ -14,6 +14,7 @@ const Register = lazy(() => import("./pages/register"));
 type UserStore = { user: User | null | undefined };
 
 const AppContext = createContext<AppState>();
+
 export type AppState = {
 	user: () => User | null | undefined;
 	setUser: SetStoreFunction<UserStore>;
