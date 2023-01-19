@@ -1,11 +1,11 @@
 import { For, JSXElement } from "solid-js";
 
-type PopularTags = {
+type PopularTagsProps = {
 	data: string[];
 	fallback?: JSXElement;
 };
 
-export default function PopularTags(props: PopularTags) {
+export default function PopularTags(props: PopularTagsProps) {
 	return (
 		<>
 			<p>Popular Tags</p>
