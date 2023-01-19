@@ -14,7 +14,6 @@ export default function Register() {
 	const handleSubmit = (e: Event) => {
 		e.preventDefault();
 
-
 		apiClient.user.createUser({
 			body: { user: { username: state.username, email: state.email, password: state.password } }
 		}).then((res) => {

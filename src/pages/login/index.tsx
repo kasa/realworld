@@ -14,6 +14,7 @@ export default function Login() {
 	if (appCtx === undefined) {
 		throw new Error("No appCtx");
 	}
+
 	const [state, setState] = createStore<UserStore>({ email: "", password: "", errors: {} });
 
 	const handleSubmit = (e: Event) => {
