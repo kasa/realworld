@@ -8,7 +8,7 @@ export default function Footer() {
 				<a href="/" class="logo-font">conduit</a>
 				<span class="attribution">
 					An interactive learning project from <a href="https://thinkster.io">Thinkster</a>. Code &amp;
-					design licensed under MIT. hash: <a href={hashURL}>{commitHash.substring(0, 6)}</a>
+					design licensed under MIT. hash: <a href={hashURL} target="_blank" rel="noopener noreferrer">{commitHash.substring(0, 6)}</a>
 				</span>
 			</div>
 		</footer>
