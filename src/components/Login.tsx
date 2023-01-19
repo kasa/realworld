@@ -1,12 +1,12 @@
 import { createStore } from "solid-js/store";
-import { GenericErrorModel, GenericErrorModelErrors, ResponseError } from "../api-client";
+import { ResponseError } from "../api-client";
 import { apiClient, useAppContext } from "../App";
 import { ListErrors } from "../components/ListErrors";
 
 type UserStore = {
 	email: string;
 	password: string;
-	errors?: GenericErrorModelErrors,
+	errors: Record<string, string>,
 }
 
 export default function Login() {
@@ -14,7 +14,7 @@ export default function Login() {
 	if (appCtx === undefined) {
 		throw new Error("No appCtx");
 	}
-	const [state, setState] = createStore<UserStore>({ email: "", password: "", errors: undefined });
+	const [state, setState] = createStore<UserStore>({ email: "", password: "", errors: {} });
 
 	const handleSubmit = (e: Event) => {
 		e.preventDefault();
@@ -25,15 +25,8 @@ export default function Login() {
 		}).then((res) => {
 			appCtx.setUser({ user: res.user });
 			location.hash = "/?tab=user";
-			// const js = await res.json();
-			// if (res.ok) {
-			// 	appCtx?.setUser(js);
-			// 	location.hash = "/feed";
-			// } else {
-			// 	setState({ errors: js.errors });
-			// }
 		}).catch(async (err: ResponseError) => {
-			const r = await err.response.json() as GenericErrorModel;
+			const r = await err.response.json();
 			setState({ errors: r.errors });
 		});
 	};
@@ -65,6 +58,6 @@ export default function Login() {
 					</div>
 				</div>
 			</div>
-		</div>
+		</div >
 	);
 }

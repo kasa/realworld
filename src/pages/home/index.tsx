@@ -56,7 +56,6 @@ export default function Home() {
 				<div class="container">
 					<h1 class="logo-font">conduit</h1>
 					<p>A place to share your knowledge.</p>
-					<p>tab: {params.tab}</p>
 				</div>
 			</div>
 			<div class="container page">
